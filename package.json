@@ -13,7 +13,9 @@
     "test:atlas": "node test-atlas-connection.js",
     "config:atlas": "powershell -ExecutionPolicy Bypass -File config-atlas-simples.ps1",
     "config:atlas-full": "powershell -ExecutionPolicy Bypass -File configurar-atlas.ps1",
-    "users:create": "powershell -ExecutionPolicy Bypass -File cadastrar-usuarios.ps1"
+    "users:create": "powershell -ExecutionPolicy Bypass -File cadastrar-usuarios.ps1",
+    "security:scan": "ggshield secret scan repo .",
+    "security:precommit": "powershell -ExecutionPolicy Bypass -File scripts/pre-commit-gitguardian.ps1"
   },
   "keywords": [
     "nodejs",
@@ -30,7 +32,10 @@
     "cors",
     "helmet",
     "mass-registration",
-    "validation"
+    "validation",
+    "security",
+    "gitguardian",
+    "secret-detection"
   ],
   "author": "Leo ST <leo.st@exemplo.com>",
   "license": "MIT",

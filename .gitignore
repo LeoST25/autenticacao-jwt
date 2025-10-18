@@ -158,3 +158,11 @@ access.log
 # Arquivos de configuração do MongoDB local
 mongo-data/
 mongodb-data/
+
+# GitGuardian
+.ggshield.cache
+ggshield.log
+
+# Configurações de segurança locais
+.env.gitguardian
+gitguardian-api-key.txt

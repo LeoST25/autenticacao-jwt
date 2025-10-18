@@ -8,6 +8,8 @@ Uma API REST completa para autenticação de usuários usando JWT (JSON Web Toke
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green)
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-green)
 ![JWT](https://img.shields.io/badge/JWT-Autenticação-blue)
+![GitGuardian](https://img.shields.io/badge/Security-GitGuardian-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## ✨ Funcionalidades
 
@@ -17,6 +19,7 @@ Uma API REST completa para autenticação de usuários usando JWT (JSON Web Toke
 - ✅ **Criptografia de senhas** com bcrypt
 - ✅ **Validação de dados** com express-validator
 - ✅ **Cadastro em massa** de usuários para testes
+- ✅ **GitGuardian** para segurança e detecção de segredos
 - ✅ **Middleware de tratamento de erros** personalizado
 - ✅ **Rotas protegidas** com diferentes níveis de acesso
 - ✅ **Sistema de roles** (user/admin)
@@ -238,6 +241,7 @@ src/
 - **✅ Validação rigorosa** de dados de entrada
 - **🚫 Sanitização** para prevenir injeções
 - **👥 Sistema de roles** (user/admin)
+- **🛡️ GitGuardian** para detecção de segredos
 
 ### Configurações de Produção
 
@@ -248,7 +252,19 @@ Para usar em produção, altere:
 JWT_SECRET=seu_jwt_secret_super_complexo_aqui_512_bits
 NODE_ENV=production
 MONGODB_URI=sua_string_de_conexao_producao
+GITGUARDIAN_API_KEY=sua_api_key_gitguardian
 ```
+
+### 🛡️ GitGuardian Security
+
+Este projeto usa GitGuardian para detecção automática de segredos:
+
+- **🔍 Scan automático** em pushes e PRs
+- **⚠️ Alertas** em tempo real
+- **🚫 Bloqueio** de commits com segredos
+- **📊 Dashboard** de segurança
+
+📖 **[Ver guia completo de configuração →](GITGUARDIAN-SETUP.md)**
 
 ## 🐳 Docker
 

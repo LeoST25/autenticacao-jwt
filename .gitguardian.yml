@@ -1,0 +1,43 @@
+# GitGuardian Configuration
+# https://docs.gitguardian.com/ggshield-docs/configuration/overview
+
+# API Token (deve ser definido como variável de ambiente GITGUARDIAN_API_KEY)
+# Obtenha em: https://dashboard.gitguardian.com/settings/api-tokens
+
+# Arquivos e diretórios a serem ignorados
+paths-ignore:
+  - "node_modules/**"
+  - ".git/**"
+  - "*.log"
+  - ".env.example"
+  - "package-lock.json"
+  - "*.md"
+
+# Patterns específicos a serem ignorados (falsos positivos)
+matches-ignore:
+  # Exemplos de configuração - senhas de exemplo
+  - match: "seu_jwt_secret_super_secreto_aqui_123456789"
+    name: "JWT Secret Example"
+    comment: "Senha de exemplo no arquivo .env.example"
+  
+  - match: "admin123"
+    name: "MongoDB Example Password" 
+    comment: "Senha de exemplo para MongoDB local"
+
+# Tipos de segredos a detectar
+# incident-config:
+#   ignore-known-secrets: true
+#   ignore-default-secrets: false
+
+# Configurações de saída
+verbose: false
+show-secrets: false
+
+# Configurações de exit code
+exit-zero: false
+
+# Configurações específicas do scan
+scan:
+  # Detectar todos os tipos de segredos
+  ignore-known-secrets: false
+  ignore-default-secrets: false
