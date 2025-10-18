@@ -28,15 +28,15 @@
     "rate-limiting",
     "validation"
   ],
-  "author": "Seu Nome <seu.email@exemplo.com>",
+  "author": "Leo ST <leo.st@exemplo.com>",
   "license": "MIT",
-  "homepage": "https://github.com/seu-usuario/autenticacao-jwt#readme",
+  "homepage": "https://github.com/LeoST25/autenticacao-jwt#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seu-usuario/autenticacao-jwt.git"
+    "url": "git+https://github.com/LeoST25/autenticacao-jwt.git"
   },
   "bugs": {
-    "url": "https://github.com/seu-usuario/autenticacao-jwt/issues"
+    "url": "https://github.com/LeoST25/autenticacao-jwt/issues"
   },
   "engines": {
     "node": ">=14.0.0",

@@ -46,7 +46,7 @@ Antes de começar, certifique-se de ter instalado:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/autenticacao-jwt.git
+git clone https://github.com/LeoST25/autenticacao-jwt.git
 cd autenticacao-jwt
 ```
 
@@ -314,10 +314,10 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👨‍💻 Autor
 
-**Seu Nome**
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
+**Leo ST**
+- GitHub: [@LeoST25](https://github.com/LeoST25)
 - LinkedIn: [seu-perfil](https://linkedin.com/in/seu-perfil)
-- Email: seu.email@exemplo.com
+- Email: leo.st@exemplo.com
 
 ## 🙏 Agradecimentos
 
