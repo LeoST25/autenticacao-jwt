@@ -1,0 +1,60 @@
+{
+  "name": "autenticacao-jwt",
+  "version": "1.0.0",
+  "description": "Sistema completo de autenticação com JWT, Node.js, Express e MongoDB. Inclui registro, login, rotas protegidas, sistema de roles e configuração Docker.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker logs auth_jwt_mongodb",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "jwt",
+    "authentication",
+    "mongodb",
+    "api",
+    "rest-api",
+    "bcrypt",
+    "docker",
+    "postman",
+    "middleware",
+    "cors",
+    "helmet",
+    "rate-limiting",
+    "validation"
+  ],
+  "author": "Seu Nome <seu.email@exemplo.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/seu-usuario/autenticacao-jwt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seu-usuario/autenticacao-jwt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/autenticacao-jwt/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

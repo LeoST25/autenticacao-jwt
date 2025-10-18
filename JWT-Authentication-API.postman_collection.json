@@ -1,0 +1,510 @@
+{
+  "info": {
+    "_postman_id": "jwt-auth-api-collection",
+    "name": "🔐 JWT Authentication API",
+    "description": "Collection completa para testar a API de autenticação com JWT.\n\n🚀 **Como usar:**\n1. Importe esta collection\n2. Configure o environment com base_url = http://localhost:3000\n3. Execute 'npm run dev' no projeto\n4. Teste as requisições na ordem sugerida\n\n📝 **Fluxo recomendado:**\n1. Health Check\n2. Register User\n3. Login\n4. Protected Routes\n\nO token JWT é capturado automaticamente após registro/login.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🏥 1. Health Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response contains success\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Verifica se o servidor está funcionando corretamente"
+      },
+      "response": []
+    },
+    {
+      "name": "📚 2. API Info",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response contains endpoints\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.endpoints).to.be.an('object');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api"
+          ]
+        },
+        "description": "Mostra informações da API e endpoints disponíveis"
+      },
+      "response": []
+    },
+    {
+      "name": "👤 3. Register User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Capturar token automaticamente se registro foi bem-sucedido",
+              "if (pm.response.code === 201) {",
+              "    const responseJson = pm.response.json();",
+              "    pm.environment.set(\"token\", responseJson.data.token);",
+              "    console.log(\"✅ Token salvo automaticamente:\", responseJson.data.token.substring(0, 30) + \"...\");",
+              "    ",
+              "    pm.test(\"User registered successfully\", function () {",
+              "        pm.expect(responseJson.success).to.eql(true);",
+              "        pm.expect(responseJson.data.user).to.have.property('name');",
+              "        pm.expect(responseJson.data.user).to.have.property('email');",
+              "        pm.expect(responseJson.data).to.have.property('token');",
+              "    });",
+              "} else if (pm.response.code === 400) {",
+              "    console.log(\"ℹ️ Usuário pode já existir - tente fazer login\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Maria Silva\",\n  \"email\": \"maria@exemplo.com\",\n  \"password\": \"MinhaSenh@123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        },
+        "description": "Registra um novo usuário no sistema.\n\n**Requisitos:**\n- Nome: 2-50 caracteres, apenas letras\n- Email: formato válido, único no sistema\n- Senha: mínimo 6 caracteres, deve conter maiúscula, minúscula e número\n\n**Retorna:**\n- Dados do usuário (sem senha)\n- Token JWT válido por 7 dias"
+      },
+      "response": []
+    },
+    {
+      "name": "🔑 4. Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Capturar token automaticamente se login foi bem-sucedido",
+              "if (pm.response.code === 200) {",
+              "    const responseJson = pm.response.json();",
+              "    pm.environment.set(\"token\", responseJson.data.token);",
+              "    console.log(\"✅ Token atualizado:\", responseJson.data.token.substring(0, 30) + \"...\");",
+              "    ",
+              "    pm.test(\"Login successful\", function () {",
+              "        pm.expect(responseJson.success).to.eql(true);",
+              "        pm.expect(responseJson.data.user).to.have.property('name');",
+              "        pm.expect(responseJson.data.user).to.have.property('email');",
+              "        pm.expect(responseJson.data).to.have.property('token');",
+              "    });",
+              "} else {",
+              "    console.log(\"❌ Erro no login - verifique email e senha\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"maria@exemplo.com\",\n  \"password\": \"MinhaSenh@123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        },
+        "description": "Autentica usuário no sistema.\n\n**Requisitos:**\n- Email registrado no sistema\n- Senha correta\n- Conta deve estar ativa\n\n**Retorna:**\n- Dados atualizados do usuário\n- Novo token JWT\n- Atualiza campo lastLogin"
+      },
+      "response": []
+    },
+    {
+      "name": "👨‍💼 5. Get Profile",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Profile retrieved successfully\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data.user).to.have.property('name');",
+              "    pm.expect(jsonData.data.user).to.have.property('email');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "description": "Token JWT obtido no login/registro"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/auth/profile",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "profile"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA**\n\nObtém o perfil do usuário atualmente logado.\n\n**Requisitos:**\n- Token JWT válido no header Authorization\n- Usuário deve estar ativo\n\n**Retorna:**\n- Dados completos do usuário (exceto senha)"
+      },
+      "response": []
+    },
+    {
+      "name": "✏️ 6. Update Profile",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Profile updated successfully\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Maria Santos Silva\",\n  \"email\": \"maria.santos@exemplo.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/profile",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "profile"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA**\n\nAtualiza dados do perfil do usuário.\n\n**Campos opcionais:**\n- name: novo nome (2-50 caracteres)\n- email: novo email (deve ser único)\n\n**Validações:**\n- Email não pode estar em uso por outro usuário\n- Nome deve seguir formato válido"
+      },
+      "response": []
+    },
+    {
+      "name": "🔒 7. Change Password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Password changed successfully\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"currentPassword\": \"MinhaSenh@123\",\n  \"newPassword\": \"NovaSenha@456\",\n  \"confirmPassword\": \"NovaSenha@456\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/change-password",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "change-password"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA**\n\nAltera a senha do usuário.\n\n**Requisitos:**\n- currentPassword: senha atual correta\n- newPassword: nova senha (min 6 chars, maiúscula, minúscula, número)\n- confirmPassword: deve ser igual à newPassword\n\n**Segurança:**\n- Valida senha atual antes de alterar\n- Nova senha é criptografada com bcrypt"
+      },
+      "response": []
+    },
+    {
+      "name": "📊 8. Protected Dashboard",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Dashboard access authorized\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include('dashboard');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/protected/dashboard",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "protected",
+            "dashboard"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA**\n\nAcessa o dashboard do usuário.\n\n**Permissões:**\n- Qualquer usuário autenticado\n- Token JWT válido obrigatório\n\n**Retorna:**\n- Dados do usuário\n- Timestamp de acesso\n- Mensagem de boas-vindas"
+      },
+      "response": []
+    },
+    {
+      "name": "👑 9. Admin Area",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    pm.test(\"Admin access authorized\", function () {",
+              "        const jsonData = pm.response.json();",
+              "        pm.expect(jsonData.success).to.eql(true);",
+              "        pm.expect(jsonData.message).to.include('administrativa');",
+              "    });",
+              "} else if (pm.response.code === 403) {",
+              "    console.log(\"⚠️ Acesso negado: Usuário precisa ser admin\");",
+              "    console.log(\"💡 Para tornar admin, execute no MongoDB:\");",
+              "    console.log(\"db.users.updateOne({email: 'maria@exemplo.com'}, {$set: {role: 'admin'}})\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/protected/admin",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "protected",
+            "admin"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA - ADMIN ONLY**\n\nAcessa área administrativa.\n\n**Permissões:**\n- Apenas usuários com role 'admin'\n- Token JWT válido obrigatório\n\n**Para tornar usuário admin:**\n```javascript\n// No MongoDB\ndb.users.updateOne(\n  {email: \"maria@exemplo.com\"}, \n  {$set: {role: \"admin\"}}\n)\n```"
+      },
+      "response": []
+    },
+    {
+      "name": "📋 10. List Users (Admin)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    pm.test(\"Users list retrieved\", function () {",
+              "        const jsonData = pm.response.json();",
+              "        pm.expect(jsonData.success).to.eql(true);",
+              "        pm.expect(jsonData.data.users).to.be.an('array');",
+              "        pm.expect(jsonData.data).to.have.property('count');",
+              "    });",
+              "} else if (pm.response.code === 403) {",
+              "    console.log(\"⚠️ Acesso negado: Usuário precisa ser admin\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/protected/users",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "protected",
+            "users"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA - ADMIN ONLY**\n\nLista todos os usuários ativos do sistema.\n\n**Permissões:**\n- Apenas usuários com role 'admin'\n- Token JWT válido obrigatório\n\n**Retorna:**\n- Array com todos os usuários ativos\n- Contagem total de usuários\n- Dados sem senhas por segurança"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Log da requisição que será executada",
+          "console.log(`🚀 Executando: ${pm.info.requestName}`);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Log do resultado da requisição",
+          "console.log(`📊 Status: ${pm.response.code} ${pm.response.status}`);"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
