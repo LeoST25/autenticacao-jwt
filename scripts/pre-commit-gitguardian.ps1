@@ -8,11 +8,19 @@ try {
     $null = Get-Command ggshield -ErrorAction Stop
 } catch {
     Write-Host "⚠️  ggshield não está instalado." -ForegroundColor Yellow
-    Write-Host "📦 Instale com: pip install ggshield" -ForegroundColor Cyan
-    Write-Host "🔗 Mais informações: https://docs.gitguardian.com/ggshield-docs/getting-started" -ForegroundColor Cyan
+    Write-Host "� Executando scan básico como alternativa..." -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "⏭️  Continuando sem scan (instale ggshield para proteção completa)..." -ForegroundColor Yellow
-    exit 0
+    
+    # Executar scan básico
+    $basicScanPath = Join-Path $PSScriptRoot "security-scan-basic.ps1"
+    if (Test-Path $basicScanPath) {
+        & $basicScanPath
+        exit $LASTEXITCODE
+    } else {
+        Write-Host "📦 Para proteção completa, execute: npm run security:install" -ForegroundColor Cyan
+        Write-Host "⏭️  Continuando sem scan..." -ForegroundColor Yellow
+        exit 0
+    }
 }
 
 # Verifica se GITGUARDIAN_API_KEY está configurada

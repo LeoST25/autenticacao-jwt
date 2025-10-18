@@ -14,8 +14,11 @@
     "config:atlas": "powershell -ExecutionPolicy Bypass -File config-atlas-simples.ps1",
     "config:atlas-full": "powershell -ExecutionPolicy Bypass -File configurar-atlas.ps1",
     "users:create": "powershell -ExecutionPolicy Bypass -File cadastrar-usuarios.ps1",
-    "security:scan": "ggshield secret scan repo .",
-    "security:precommit": "powershell -ExecutionPolicy Bypass -File scripts/pre-commit-gitguardian.ps1"
+    "security:scan": "python -m ggshield secret scan repo . || powershell -ExecutionPolicy Bypass -File scripts/security-scan-basic.ps1",
+    "security:scan-basic": "powershell -ExecutionPolicy Bypass -File scripts/security-scan-basic.ps1",
+    "security:precommit": "powershell -ExecutionPolicy Bypass -File scripts/pre-commit-gitguardian.ps1",
+    "security:install": "powershell -ExecutionPolicy Bypass -File scripts/install-gitguardian.ps1",
+    "security:install-ggshield": "powershell -ExecutionPolicy Bypass -File scripts/install-gitguardian.ps1"
   },
   "keywords": [
     "nodejs",
