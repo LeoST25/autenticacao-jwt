@@ -391,8 +391,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Leo ST**
 - GitHub: [@LeoST25](https://github.com/LeoST25)
-- LinkedIn: [seu-perfil](https://linkedin.com/in/seu-perfil)
-- Email: leo.st@exemplo.com
+- LinkedIn: [Leonardo Matheus da Silva](https://www.linkedin.com/in/leonardo-matheus-da-silva-127946125/)
+- Email: matheusleonardo224@gmail.com
 
 ## 🙏 Agradecimentos
 
