@@ -16,7 +16,7 @@ Uma API REST completa para autenticação de usuários usando JWT (JSON Web Toke
 - ✅ **Autenticação e autorização** por roles
 - ✅ **Criptografia de senhas** com bcrypt
 - ✅ **Validação de dados** com express-validator
-- ✅ **Rate limiting** para proteção contra ataques
+- ✅ **Cadastro em massa** de usuários para testes
 - ✅ **Middleware de tratamento de erros** personalizado
 - ✅ **Rotas protegidas** com diferentes níveis de acesso
 - ✅ **Sistema de roles** (user/admin)
@@ -82,7 +82,56 @@ npm run dev
 npm start
 ```
 
-## 📚 Documentação da API
+### 6. (Opcional) Cadastre usuários de teste
+
+```bash
+# Cadastrar 100 usuários automaticamente
+npm run users:create
+
+# Ou configure MongoDB Atlas
+npm run config:atlas-full
+```
+
+## � Cadastro em Massa de Usuários
+
+Esta aplicação inclui ferramentas para cadastrar múltiplos usuários de forma automatizada:
+
+### 📋 Arquivos Incluídos
+
+- **`usuarios-teste.json`** - 100 usuários pré-configurados com senhas seguras
+- **`cadastrar-usuarios.ps1`** - Script PowerShell para cadastro automático
+
+### 🔧 Como Usar
+
+1. **Inicie o servidor:**
+```bash
+npm start
+```
+
+2. **Execute o script de cadastro:**
+```powershell
+.\cadastrar-usuarios.ps1
+```
+
+3. **Ou use individualmente no Postman:**
+- Copie qualquer usuário do `usuarios-teste.json`
+- Faça POST para `/api/auth/register`
+
+### 🔐 Senhas Seguras
+
+Todos os usuários possuem senhas que atendem aos critérios de segurança:
+- ✅ Maiúscula (primeira letra do nome)
+- ✅ Minúscula (restante do nome)  
+- ✅ Números (123, 456, etc.)
+- ✅ Caracteres especiais (@, #, $, &, *)
+
+**Exemplos:**
+- Ana Silva Santos → `Ana@2024!`
+- Bruno Costa Lima → `Bruno#123`
+
+📖 **[Ver guia completo de cadastro em massa →](CADASTRO-EM-MASSA.md)**
+
+## �📚 Documentação da API
 
 ### 🌐 Endpoints Públicos
 
@@ -183,7 +232,7 @@ src/
 
 - **🔑 JWT Tokens** com expiração configurável
 - **🔒 bcrypt** para hash de senhas (12 rounds)
-- **⚡ Rate Limiting** (5 login attempts / 15min)
+- **🚀 Cadastro ilimitado** para desenvolvimento e testes
 - **🛡️ Helmet** para headers de segurança
 - **🌐 CORS** configurado adequadamente
 - **✅ Validação rigorosa** de dados de entrada

@@ -1,7 +1,7 @@
 {
   "name": "autenticacao-jwt",
   "version": "1.0.0",
-  "description": "Sistema completo de autenticação com JWT, Node.js, Express e MongoDB. Inclui registro, login, rotas protegidas, sistema de roles e configuração Docker.",
+  "description": "Sistema completo de autenticação com JWT, Node.js, Express e MongoDB. Inclui registro ilimitado, login, rotas protegidas, sistema de roles, cadastro em massa e configuração Docker.",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -12,7 +12,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:atlas": "node test-atlas-connection.js",
     "config:atlas": "powershell -ExecutionPolicy Bypass -File config-atlas-simples.ps1",
-    "config:atlas-full": "powershell -ExecutionPolicy Bypass -File configurar-atlas.ps1"
+    "config:atlas-full": "powershell -ExecutionPolicy Bypass -File configurar-atlas.ps1",
+    "users:create": "powershell -ExecutionPolicy Bypass -File cadastrar-usuarios.ps1"
   },
   "keywords": [
     "nodejs",
@@ -28,7 +29,7 @@
     "middleware",
     "cors",
     "helmet",
-    "rate-limiting",
+    "mass-registration",
     "validation"
   ],
   "author": "Leo ST <leo.st@exemplo.com>",

@@ -1,0 +1,534 @@
+{
+  "usuarios": [
+    {
+      "name": "Ana Silva Santos",
+      "email": "ana.silva.santos@gmail.com",
+      "password": "Ana@2024!"
+    },
+    {
+      "name": "Bruno Costa Lima",
+      "email": "bruno.costa.lima@gmail.com",
+      "password": "Bruno#123"
+    },
+    {
+      "name": "Carla Ferreira Souza",
+      "email": "carla.ferreira.souza@gmail.com",
+      "password": "Carla$456"
+    },
+    {
+      "name": "Daniel Rodrigues Pereira",
+      "email": "daniel.rodrigues.pereira@gmail.com",
+      "password": "Daniel&789"
+    },
+    {
+      "name": "Eduarda Oliveira Martins",
+      "email": "eduarda.oliveira.martins@gmail.com",
+      "password": "Eduarda*012"
+    },
+    {
+      "name": "Felipe Almeida Castro",
+      "email": "felipe.almeida.castro@gmail.com",
+      "password": "Felipe@345"
+    },
+    {
+      "name": "Gabriela Santos Rocha",
+      "email": "gabriela.santos.rocha@gmail.com",
+      "password": "Gabriela#678"
+    },
+    {
+      "name": "Henrique Lima Barbosa",
+      "email": "henrique.lima.barbosa@gmail.com",
+      "password": "Henrique$901"
+    },
+    {
+      "name": "Isabela Costa Fernandes",
+      "email": "isabela.costa.fernandes@gmail.com",
+      "password": "Isabela&234"
+    },
+    {
+      "name": "João Pereira Gomes",
+      "email": "joao.pereira.gomes@gmail.com",
+      "password": "Joao*567"
+    },
+    {
+      "name": "Karina Souza Machado",
+      "email": "karina.souza.machado@gmail.com",
+      "password": "Karina@890"
+    },
+    {
+      "name": "Lucas Martins Ribeiro",
+      "email": "lucas.martins.ribeiro@gmail.com",
+      "password": "Lucas#123"
+    },
+    {
+      "name": "Mariana Castro Alves",
+      "email": "mariana.castro.alves@gmail.com",
+      "password": "Mariana$456"
+    },
+    {
+      "name": "Nicolas Rocha Silva",
+      "email": "nicolas.rocha.silva@gmail.com",
+      "password": "Nicolas&789"
+    },
+    {
+      "name": "Olivia Barbosa Santos",
+      "email": "olivia.barbosa.santos@gmail.com",
+      "password": "Olivia*012"
+    },
+    {
+      "name": "Pedro Fernandes Costa",
+      "email": "pedro.fernandes.costa@gmail.com",
+      "password": "Pedro@345"
+    },
+    {
+      "name": "Queila Gomes Lima",
+      "email": "queila.gomes.lima@gmail.com",
+      "password": "Queila#678"
+    },
+    {
+      "name": "Rafael Machado Pereira",
+      "email": "rafael.machado.pereira@gmail.com",
+      "password": "Rafael$901"
+    },
+    {
+      "name": "Sofia Ribeiro Souza",
+      "email": "sofia.ribeiro.souza@gmail.com",
+      "password": "Sofia&234"
+    },
+    {
+      "name": "Thiago Alves Martins",
+      "email": "thiago.alves.martins@gmail.com",
+      "password": "Thiago*567"
+    },
+    {
+      "name": "Valentina Santos Castro",
+      "email": "valentina.santos.castro@gmail.com",
+      "password": "Valentina@890"
+    },
+    {
+      "name": "William Silva Rocha",
+      "email": "william.silva.rocha@gmail.com",
+      "password": "William#123"
+    },
+    {
+      "name": "Yasmin Costa Barbosa",
+      "email": "yasmin.costa.barbosa@gmail.com",
+      "password": "Yasmin$456"
+    },
+    {
+      "name": "Zeca Lima Fernandes",
+      "email": "zeca.lima.fernandes@gmail.com",
+      "password": "Zeca&789"
+    },
+    {
+      "name": "Amanda Pereira Gomes",
+      "email": "amanda.pereira.gomes@gmail.com",
+      "password": "Amanda*012"
+    },
+    {
+      "name": "Bernardo Souza Machado",
+      "email": "bernardo.souza.machado@gmail.com",
+      "password": "Bernardo@345"
+    },
+    {
+      "name": "Camila Martins Ribeiro",
+      "email": "camila.martins.ribeiro@gmail.com",
+      "password": "Camila#678"
+    },
+    {
+      "name": "Diego Castro Alves",
+      "email": "diego.castro.alves@gmail.com",
+      "password": "Diego$901"
+    },
+    {
+      "name": "Emilia Rocha Silva",
+      "email": "emilia.rocha.silva@gmail.com",
+      "password": "Emilia&234"
+    },
+    {
+      "name": "Fabricio Barbosa Santos",
+      "email": "fabricio.barbosa.santos@gmail.com",
+      "password": "Fabricio*567"
+    },
+    {
+      "name": "Giovanna Fernandes Costa",
+      "email": "giovanna.fernandes.costa@gmail.com",
+      "password": "Giovanna@890"
+    },
+    {
+      "name": "Hugo Gomes Lima",
+      "email": "hugo.gomes.lima@gmail.com",
+      "password": "Hugo#123"
+    },
+    {
+      "name": "Ingrid Machado Pereira",
+      "email": "ingrid.machado.pereira@gmail.com",
+      "password": "Ingrid$456"
+    },
+    {
+      "name": "Julio Ribeiro Souza",
+      "email": "julio.ribeiro.souza@gmail.com",
+      "password": "Julio&789"
+    },
+    {
+      "name": "Kelly Alves Martins",
+      "email": "kelly.alves.martins@gmail.com",
+      "password": "Kelly*012"
+    },
+    {
+      "name": "Leonardo Santos Castro",
+      "email": "leonardo.santos.castro@gmail.com",
+      "password": "Leonardo@345"
+    },
+    {
+      "name": "Melissa Silva Rocha",
+      "email": "melissa.silva.rocha@gmail.com",
+      "password": "Melissa#678"
+    },
+    {
+      "name": "Nathan Costa Barbosa",
+      "email": "nathan.costa.barbosa@gmail.com",
+      "password": "Nathan$901"
+    },
+    {
+      "name": "Otavio Lima Fernandes",
+      "email": "otavio.lima.fernandes@gmail.com",
+      "password": "Otavio&234"
+    },
+    {
+      "name": "Paloma Pereira Gomes",
+      "email": "paloma.pereira.gomes@gmail.com",
+      "password": "Paloma*567"
+    },
+    {
+      "name": "Quintino Souza Machado",
+      "email": "quintino.souza.machado@gmail.com",
+      "password": "Quintino@890"
+    },
+    {
+      "name": "Renata Martins Ribeiro",
+      "email": "renata.martins.ribeiro@gmail.com",
+      "password": "Renata#123"
+    },
+    {
+      "name": "Samuel Castro Alves",
+      "email": "samuel.castro.alves@gmail.com",
+      "password": "Samuel$456"
+    },
+    {
+      "name": "Tatiana Rocha Silva",
+      "email": "tatiana.rocha.silva@gmail.com",
+      "password": "Tatiana&789"
+    },
+    {
+      "name": "Ursula Barbosa Santos",
+      "email": "ursula.barbosa.santos@gmail.com",
+      "password": "Ursula*012"
+    },
+    {
+      "name": "Victor Fernandes Costa",
+      "email": "victor.fernandes.costa@gmail.com",
+      "password": "Victor@345"
+    },
+    {
+      "name": "Wendy Gomes Lima",
+      "email": "wendy.gomes.lima@gmail.com",
+      "password": "Wendy#678"
+    },
+    {
+      "name": "Xavier Machado Pereira",
+      "email": "xavier.machado.pereira@gmail.com",
+      "password": "Xavier$901"
+    },
+    {
+      "name": "Yolanda Ribeiro Souza",
+      "email": "yolanda.ribeiro.souza@gmail.com",
+      "password": "Yolanda&234"
+    },
+    {
+      "name": "Zacarias Alves Martins",
+      "email": "zacarias.alves.martins@gmail.com",
+      "password": "Zacarias*567"
+    },
+    {
+      "name": "Adriana Santos Castro",
+      "email": "adriana.santos.castro@gmail.com",
+      "password": "Adriana@890"
+    },
+    {
+      "name": "Bento Silva Rocha",
+      "email": "bento.silva.rocha@gmail.com",
+      "password": "Bento#123"
+    },
+    {
+      "name": "Cecilia Costa Barbosa",
+      "email": "cecilia.costa.barbosa@gmail.com",
+      "password": "Cecilia$456"
+    },
+    {
+      "name": "Davi Lima Fernandes",
+      "email": "davi.lima.fernandes@gmail.com",
+      "password": "Davi&789"
+    },
+    {
+      "name": "Elisa Pereira Gomes",
+      "email": "elisa.pereira.gomes@gmail.com",
+      "password": "Elisa*012"
+    },
+    {
+      "name": "Fernando Souza Machado",
+      "email": "fernando.souza.machado@gmail.com",
+      "password": "Fernando@345"
+    },
+    {
+      "name": "Giulia Martins Ribeiro",
+      "email": "giulia.martins.ribeiro@gmail.com",
+      "password": "Giulia#678"
+    },
+    {
+      "name": "Heitor Castro Alves",
+      "email": "heitor.castro.alves@gmail.com",
+      "password": "Heitor$901"
+    },
+    {
+      "name": "Iris Rocha Silva",
+      "email": "iris.rocha.silva@gmail.com",
+      "password": "Iris&234"
+    },
+    {
+      "name": "Jonas Barbosa Santos",
+      "email": "jonas.barbosa.santos@gmail.com",
+      "password": "Jonas*567"
+    },
+    {
+      "name": "Kamila Fernandes Costa",
+      "email": "kamila.fernandes.costa@gmail.com",
+      "password": "Kamila@890"
+    },
+    {
+      "name": "Luan Gomes Lima",
+      "email": "luan.gomes.lima@gmail.com",
+      "password": "Luan#123"
+    },
+    {
+      "name": "Monica Machado Pereira",
+      "email": "monica.machado.pereira@gmail.com",
+      "password": "Monica$456"
+    },
+    {
+      "name": "Natan Ribeiro Souza",
+      "email": "natan.ribeiro.souza@gmail.com",
+      "password": "Natan&789"
+    },
+    {
+      "name": "Olga Alves Martins",
+      "email": "olga.alves.martins@gmail.com",
+      "password": "Olga*012"
+    },
+    {
+      "name": "Paulo Santos Castro",
+      "email": "paulo.santos.castro@gmail.com",
+      "password": "Paulo@345"
+    },
+    {
+      "name": "Queren Silva Rocha",
+      "email": "queren.silva.rocha@gmail.com",
+      "password": "Queren#678"
+    },
+    {
+      "name": "Roberto Costa Barbosa",
+      "email": "roberto.costa.barbosa@gmail.com",
+      "password": "Roberto$901"
+    },
+    {
+      "name": "Sabrina Lima Fernandes",
+      "email": "sabrina.lima.fernandes@gmail.com",
+      "password": "Sabrina&234"
+    },
+    {
+      "name": "Tiago Pereira Gomes",
+      "email": "tiago.pereira.gomes@gmail.com",
+      "password": "Tiago*567"
+    },
+    {
+      "name": "Ulisses Souza Machado",
+      "email": "ulisses.souza.machado@gmail.com",
+      "password": "Ulisses@890"
+    },
+    {
+      "name": "Viviane Martins Ribeiro",
+      "email": "viviane.martins.ribeiro@gmail.com",
+      "password": "Viviane#123"
+    },
+    {
+      "name": "Wagner Castro Alves",
+      "email": "wagner.castro.alves@gmail.com",
+      "password": "Wagner$456"
+    },
+    {
+      "name": "Xuxa Rocha Silva",
+      "email": "xuxa.rocha.silva@gmail.com",
+      "password": "Xuxa&789"
+    },
+    {
+      "name": "Yara Barbosa Santos",
+      "email": "yara.barbosa.santos@gmail.com",
+      "password": "Yara*012"
+    },
+    {
+      "name": "Zuleica Fernandes Costa",
+      "email": "zuleica.fernandes.costa@gmail.com",
+      "password": "Zuleica@345"
+    },
+    {
+      "name": "Alexandre Gomes Lima",
+      "email": "alexandre.gomes.lima@gmail.com",
+      "password": "Alexandre#678"
+    },
+    {
+      "name": "Beatriz Machado Pereira",
+      "email": "beatriz.machado.pereira@gmail.com",
+      "password": "Beatriz$901"
+    },
+    {
+      "name": "Carlos Ribeiro Souza",
+      "email": "carlos.ribeiro.souza@gmail.com",
+      "password": "Carlos&234"
+    },
+    {
+      "name": "Debora Alves Martins",
+      "email": "debora.alves.martins@gmail.com",
+      "password": "Debora*567"
+    },
+    {
+      "name": "Eduardo Santos Castro",
+      "email": "eduardo.santos.castro@gmail.com",
+      "password": "Eduardo@890"
+    },
+    {
+      "name": "Fernanda Silva Rocha",
+      "email": "fernanda.silva.rocha@gmail.com",
+      "password": "Fernanda#123"
+    },
+    {
+      "name": "Gustavo Costa Barbosa",
+      "email": "gustavo.costa.barbosa@gmail.com",
+      "password": "Gustavo$456"
+    },
+    {
+      "name": "Helena Lima Fernandes",
+      "email": "helena.lima.fernandes@gmail.com",
+      "password": "Helena&789"
+    },
+    {
+      "name": "Igor Pereira Gomes",
+      "email": "igor.pereira.gomes@gmail.com",
+      "password": "Igor*012"
+    },
+    {
+      "name": "Juliana Souza Machado",
+      "email": "juliana.souza.machado@gmail.com",
+      "password": "Juliana@345"
+    },
+    {
+      "name": "Kevin Martins Ribeiro",
+      "email": "kevin.martins.ribeiro@gmail.com",
+      "password": "Kevin#678"
+    },
+    {
+      "name": "Larissa Castro Alves",
+      "email": "larissa.castro.alves@gmail.com",
+      "password": "Larissa$901"
+    },
+    {
+      "name": "Marcos Rocha Silva",
+      "email": "marcos.rocha.silva@gmail.com",
+      "password": "Marcos&234"
+    },
+    {
+      "name": "Natalia Barbosa Santos",
+      "email": "natalia.barbosa.santos@gmail.com",
+      "password": "Natalia*567"
+    },
+    {
+      "name": "Orlando Fernandes Costa",
+      "email": "orlando.fernandes.costa@gmail.com",
+      "password": "Orlando@890"
+    },
+    {
+      "name": "Patricia Gomes Lima",
+      "email": "patricia.gomes.lima@gmail.com",
+      "password": "Patricia#123"
+    },
+    {
+      "name": "Quirino Machado Pereira",
+      "email": "quirino.machado.pereira@gmail.com",
+      "password": "Quirino$456"
+    },
+    {
+      "name": "Raquel Ribeiro Souza",
+      "email": "raquel.ribeiro.souza@gmail.com",
+      "password": "Raquel&789"
+    },
+    {
+      "name": "Sergio Alves Martins",
+      "email": "sergio.alves.martins@gmail.com",
+      "password": "Sergio*012"
+    },
+    {
+      "name": "Tereza Santos Castro",
+      "email": "tereza.santos.castro@gmail.com",
+      "password": "Tereza@345"
+    },
+    {
+      "name": "Umberto Silva Rocha",
+      "email": "umberto.silva.rocha@gmail.com",
+      "password": "Umberto#678"
+    },
+    {
+      "name": "Veronica Costa Barbosa",
+      "email": "veronica.costa.barbosa@gmail.com",
+      "password": "Veronica$901"
+    },
+    {
+      "name": "Waldir Lima Fernandes",
+      "email": "waldir.lima.fernandes@gmail.com",
+      "password": "Waldir&234"
+    },
+    {
+      "name": "Ximena Pereira Gomes",
+      "email": "ximena.pereira.gomes@gmail.com",
+      "password": "Ximena*567"
+    },
+    {
+      "name": "Yuri Souza Machado",
+      "email": "yuri.souza.machado@gmail.com",
+      "password": "Yuri@890"
+    },
+    {
+      "name": "Zenaide Martins Ribeiro",
+      "email": "zenaide.martins.ribeiro@gmail.com",
+      "password": "Zenaide#123"
+    },
+    {
+      "name": "Alberto Castro Alves",
+      "email": "alberto.castro.alves@gmail.com",
+      "password": "Alberto$456"
+    },
+    {
+      "name": "Bianca Rocha Silva",
+      "email": "bianca.rocha.silva@gmail.com",
+      "password": "Bianca&789"
+    },
+    {
+      "name": "Claudio Barbosa Santos",
+      "email": "claudio.barbosa.santos@gmail.com",
+      "password": "Claudio*012"
+    },
+    {
+      "name": "Daniela Fernandes Costa",
+      "email": "daniela.fernandes.costa@gmail.com",
+      "password": "Daniela@345"
+    }
+  ]
+}

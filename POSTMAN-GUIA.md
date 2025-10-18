@@ -22,7 +22,39 @@
 
 4. **Salve** e **selecione este environment**
 
-## 📝 2. CRIANDO AS REQUISIÇÕES
+## � CADASTRO EM MASSA (NOVO!)
+
+Esta aplicação agora inclui ferramentas para cadastro automático de usuários:
+
+### 📋 Usuários Pré-configurados
+
+- **Arquivo:** `usuarios-teste.json` (100 usuários)
+- **Senhas seguras:** Maiúscula + minúscula + números + caracteres especiais
+- **Exemplos:**
+  - Ana Silva Santos → `Ana@2024!`
+  - Bruno Costa Lima → `Bruno#123`
+
+### 🤖 Script Automático
+
+Execute no PowerShell:
+```powershell
+.\cadastrar-usuarios.ps1
+```
+
+Isso cadastrará todos os 100 usuários automaticamente!
+
+### 📋 Uso Manual no Postman
+
+Copie qualquer usuário do `usuarios-teste.json`:
+```json
+{
+  "name": "Ana Silva Santos",
+  "email": "ana.silva.santos@gmail.com",
+  "password": "Ana@2024!"
+}
+```
+
+## �📝 2. CRIANDO AS REQUISIÇÕES
 
 ### 🏥 Request 1: Health Check
 
@@ -426,8 +458,10 @@ Crie múltiplos usuários alterando:
 - ✅ Verificar header: `Authorization: Bearer {{token}}`
 - ✅ Fazer login novamente para token válido
 
-### Erro: "Muitas tentativas"
-- ✅ Rate limiting ativo - aguardar ou usar email diferente
+### 🚀 Cadastro em Massa
+- ✅ Use `usuarios-teste.json` para 100 usuários pré-configurados
+- ✅ Execute `cadastrar-usuarios.ps1` para cadastro automático
+- ✅ Sem limites de tentativas - cadastre quantos usuários precisar
 
 ---
 

@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+// Rate limiting removido para permitir cadastros ilimitados
 
 // Importar configuração do banco
 const connectDB = require('./config/database');
@@ -31,19 +31,7 @@ app.use(helmet({
   },
 }));
 
-// Rate limiting global
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // máximo 100 requests por IP por janela
-  message: {
-    success: false,
-    message: 'Muitas requisições deste IP, tente novamente mais tarde.'
-  },
-  standardHeaders: true,
-  legacyHeaders: false
-});
-
-app.use(limiter);
+// Rate limiting removido para permitir requisições ilimitadas
 
 // Configuração do CORS
 app.use(cors({

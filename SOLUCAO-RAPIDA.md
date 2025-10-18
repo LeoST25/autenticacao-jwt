@@ -2,6 +2,28 @@
 
 ## ❌ Problema: `bad auth : Authentication failed`
 
+## 🚀 NOVO: Cadastro em Massa
+
+### Cadastrar 100 Usuários Automaticamente
+```bash
+npm run users:create
+```
+
+**OU diretamente:**
+```powershell
+.\cadastrar-usuarios.ps1
+```
+
+### Usar Usuários Individuais no Postman
+Copie do arquivo `usuarios-teste.json`:
+```json
+{
+  "name": "Ana Silva Santos", 
+  "email": "ana.silva.santos@gmail.com",
+  "password": "Ana@2024!"
+}
+```
+
 ## ✅ Solução em 3 Passos
 
 ### Passo 1: Configure as Credenciais
