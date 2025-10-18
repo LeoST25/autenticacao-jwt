@@ -1,0 +1,97 @@
+# Configurador MongoDB Atlas - PowerShell
+# ESTE É UM TEMPLATE - Copie para configurar-atlas.ps1 e customize
+
+Clear-Host
+Write-Host "========================================"
+Write-Host "    CONFIGURADOR MONGODB ATLAS"
+Write-Host "========================================"
+Write-Host ""
+Write-Host "Este script vai te ajudar a configurar"
+Write-Host "a conexao com o MongoDB Atlas."
+Write-Host ""
+Write-Host "ANTES DE CONTINUAR:"
+Write-Host "1. Acesse https://cloud.mongodb.com/"
+Write-Host "2. Va em Database Access"
+Write-Host "3. Crie/edite o usuario jwt_user"
+Write-Host "4. Anote a senha que voce criar"
+Write-Host ""
+Read-Host "Pressione ENTER quando estiver pronto"
+
+# Coloque seu usuário padrão aqui
+$defaultUsername = "jwt_user"
+# Coloque o nome do seu cluster aqui
+$clusterName = "SEU_CLUSTER_AQUI"
+# Coloque o ID do seu cluster aqui  
+$clusterId = "SEU_ID_CLUSTER_AQUI"
+
+do {
+    Clear-Host
+    Write-Host "========================================"
+    Write-Host "    INFORMACOES NECESSARIAS"
+    Write-Host "========================================"
+    Write-Host ""
+    
+    $username = Read-Host "Digite o nome de usuario (default: $defaultUsername)"
+    if ([string]::IsNullOrEmpty($username)) {
+        $username = $defaultUsername
+    }
+    
+    do {
+        $password = Read-Host "Digite a senha do usuario"
+        if ([string]::IsNullOrEmpty($password)) {
+            Write-Host "ERRO: A senha nao pode estar vazia!"
+        }
+    } while ([string]::IsNullOrEmpty($password))
+    
+    $database = Read-Host "Digite o nome do banco (default: auth_jwt)"
+    if ([string]::IsNullOrEmpty($database)) {
+        $database = "auth_jwt"
+    }
+    
+    # CUSTOMIZE ESTA LINHA COM SEU CLUSTER
+    $connectionString = "mongodb+srv://${username}:${password}@${clusterName}.${clusterId}.mongodb.net/${database}?retryWrites=true&w=majority&appName=Cluster"
+    
+    Write-Host ""
+    Write-Host "MONGODB_URI=$connectionString"
+    Write-Host ""
+    
+    $save = Read-Host "Quer salvar automaticamente no arquivo .env? (s/n)"
+    
+    if ($save -eq "s" -or $save -eq "S") {
+        try {
+            if (Test-Path ".env") {
+                Copy-Item ".env" ".env.backup" -Force
+                Write-Host "Backup do .env criado"
+            }
+            
+            $envContent = @"
+# Configuracao do Servidor
+PORT=3000
+NODE_ENV=development
+
+# Configuracao do MongoDB - Atlas
+MONGODB_URI=$connectionString
+
+# Configuracao do JWT
+JWT_SECRET=seu_jwt_secret_super_secreto_aqui_123456789
+JWT_EXPIRES_IN=7d
+
+# Configuracao do Bcrypt
+BCRYPT_ROUNDS=12
+"@
+            
+            $envContent | Out-File -FilePath ".env" -Encoding UTF8
+            Write-Host "Arquivo .env atualizado com sucesso!"
+            
+        } catch {
+            $errorMessage = $_.Exception.Message
+            Write-Host "Erro ao salvar o arquivo .env: $errorMessage"
+        }
+    }
+    
+    $continue = Read-Host "Quer gerar outra string de conexao? (s/n)"
+    
+} while ($continue -eq "s" -or $continue -eq "S")
+
+Write-Host "Configuracao concluida!"
+Read-Host "Pressione ENTER para sair"

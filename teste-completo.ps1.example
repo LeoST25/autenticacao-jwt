@@ -1,0 +1,106 @@
+# Script de Teste Completo - PowerShell
+# ESTE É UM TEMPLATE - Copie para teste-completo.ps1 e customize
+
+param(
+    [string]$BaseUrl = "http://localhost:3000/api",
+    [string]$TestEmail = "admin@teste.com",
+    [string]$TestPassword = "admin123"
+)
+
+Clear-Host
+Write-Host "========================================"
+Write-Host "       TESTE COMPLETO DA API JWT"
+Write-Host "========================================"
+Write-Host "URL Base: $BaseUrl"
+Write-Host "========================================"
+Write-Host ""
+
+$global:token = $null
+$global:userId = $null
+
+function Test-ApiEndpoint {
+    param($Name, $ScriptBlock)
+    Write-Host "🧪 Testando: $Name" -ForegroundColor Cyan
+    try {
+        & $ScriptBlock
+        Write-Host "✅ $Name - PASSOU" -ForegroundColor Green
+    } catch {
+        Write-Host "❌ $Name - FALHOU: $($_.Exception.Message)" -ForegroundColor Red
+    }
+    Write-Host ""
+}
+
+# 1. Teste de Health Check
+Test-ApiEndpoint "Health Check" {
+    $response = Invoke-RestMethod -Uri "$BaseUrl/health" -Method GET
+    if ($response.status -ne "ok") { throw "Status invalido" }
+}
+
+# 2. Teste de Registro
+Test-ApiEndpoint "Registro de Usuario" {
+    $userData = @{
+        name = "Admin Teste"
+        email = $TestEmail
+        password = $TestPassword
+    } | ConvertTo-Json
+
+    $headers = @{'Content-Type' = 'application/json'}
+    $response = Invoke-RestMethod -Uri "$BaseUrl/auth/register" -Method POST -Body $userData -Headers $headers
+    $global:userId = $response.user.id
+    if (-not $response.user.email) { throw "Usuario nao criado corretamente" }
+}
+
+# 3. Teste de Login
+Test-ApiEndpoint "Login de Usuario" {
+    $loginData = @{
+        email = $TestEmail
+        password = $TestPassword
+    } | ConvertTo-Json
+
+    $headers = @{'Content-Type' = 'application/json'}
+    $response = Invoke-RestMethod -Uri "$BaseUrl/auth/login" -Method POST -Body $loginData -Headers $headers
+    $global:token = $response.token
+    if (-not $global:token) { throw "Token nao recebido" }
+}
+
+# 4. Teste de Profile
+Test-ApiEndpoint "Acesso ao Profile" {
+    $authHeaders = @{
+        'Content-Type' = 'application/json'
+        'Authorization' = "Bearer $global:token"
+    }
+    $response = Invoke-RestMethod -Uri "$BaseUrl/protected/profile" -Method GET -Headers $authHeaders
+    if ($response.user.email -ne $TestEmail) { throw "Dados do perfil incorretos" }
+}
+
+# 5. Teste de Usuarios (Lista)
+Test-ApiEndpoint "Lista de Usuarios" {
+    $authHeaders = @{
+        'Content-Type' = 'application/json'
+        'Authorization' = "Bearer $global:token"
+    }
+    $response = Invoke-RestMethod -Uri "$BaseUrl/protected/users" -Method GET -Headers $authHeaders
+    if (-not $response.users) { throw "Lista de usuarios vazia" }
+}
+
+# 6. Teste Make Admin
+Test-ApiEndpoint "Tornar Usuario Admin" {
+    $authHeaders = @{
+        'Content-Type' = 'application/json'
+        'Authorization' = "Bearer $global:token"
+    }
+    $response = Invoke-RestMethod -Uri "$BaseUrl/protected/make-admin" -Method POST -Headers $authHeaders
+    if ($response.user.role -ne "admin") { throw "Usuario nao se tornou admin" }
+}
+
+Write-Host "========================================"
+Write-Host "        RESUMO DOS TESTES"
+Write-Host "========================================"
+Write-Host "Token gerado: $($global:token.Substring(0, 20))..." -ForegroundColor Yellow
+Write-Host "User ID: $global:userId" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "✅ Todos os testes principais foram executados!"
+Write-Host "Verifique os resultados acima para ver se passaram."
+Write-Host ""
+
+Read-Host "Pressione ENTER para sair"

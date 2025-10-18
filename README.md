@@ -285,7 +285,21 @@ npm run test:watch # Testes em watch mode
 
 ### Problemas Comuns
 
-#### MongoDB não conecta
+#### MongoDB Atlas - Erro de Autenticação
+```bash
+# Testar conexão
+npm run test:atlas
+
+# Configurar credenciais
+npm run config:atlas
+```
+**Soluções:**
+1. Verificar usuário no Database Access do MongoDB Atlas
+2. Confirmar senha correta
+3. Adicionar IP no Network Access (0.0.0.0/0 para desenvolvimento)
+4. Verificar se cluster está ativo
+
+#### MongoDB Local não conecta
 ```bash
 # Verificar se Docker está rodando
 docker ps
@@ -307,6 +321,18 @@ PORT=3001
 - Verificar se o token não expirou (7 dias por padrão)
 - Confirmar formato: `Authorization: Bearer <token>`
 - Fazer novo login para obter token válido
+
+#### Scripts úteis para diagnóstico
+```bash
+# Testar conexão Atlas
+npm run test:atlas
+
+# Configurar Atlas automaticamente
+npm run config:atlas
+
+# Ver logs do container MongoDB local
+npm run docker:logs
+```
 
 ## 📄 Licença
 

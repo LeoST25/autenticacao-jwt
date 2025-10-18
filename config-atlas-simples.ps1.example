@@ -1,0 +1,47 @@
+# Configurador MongoDB Atlas Simples - PowerShell
+# ESTE É UM TEMPLATE - Copie para config-atlas-simples.ps1 e customize
+
+# CUSTOMIZE ESTAS VARIÁVEIS COM SEU CLUSTER:
+$CLUSTER_NAME = "SEU_CLUSTER_AQUI"    # Ex: cluster2
+$CLUSTER_ID = "SEU_ID_CLUSTER_AQUI"   # Ex: bdhtrjl
+
+Clear-Host
+Write-Host "========================================"
+Write-Host "   CONFIGURADOR ATLAS SIMPLIFICADO"
+Write-Host "========================================"
+Write-Host ""
+
+# Colete apenas as informações essenciais
+$username = Read-Host "Usuario MongoDB Atlas"
+$password = Read-Host "Senha do usuario" -AsSecureString
+$plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
+
+# Gere a string de conexão
+$connectionString = "mongodb+srv://${username}:${plainPassword}@${CLUSTER_NAME}.${CLUSTER_ID}.mongodb.net/auth_jwt?retryWrites=true&w=majority"
+
+Write-Host ""
+Write-Host "String de conexao gerada:"
+Write-Host "MONGODB_URI=$connectionString"
+Write-Host ""
+
+# Salve diretamente no .env
+try {
+    $envContent = @"
+# Configuracao do MongoDB Atlas  
+MONGODB_URI=$connectionString
+
+# Outras configuracoes (mantenha as existentes)
+PORT=3000
+JWT_SECRET=seu_jwt_secret_super_secreto_aqui_123456789
+JWT_EXPIRES_IN=7d
+BCRYPT_ROUNDS=12
+"@
+    
+    $envContent | Out-File -FilePath ".env" -Encoding UTF8
+    Write-Host "✅ Arquivo .env atualizado com sucesso!"
+    
+} catch {
+    Write-Host "❌ Erro ao salvar: $($_.Exception.Message)"
+}
+
+Read-Host "Pressione ENTER para continuar"

@@ -1,0 +1,92 @@
+# Script de Demonstração - PowerShell
+# ESTE É UM TEMPLATE - Copie para demo-usuario.ps1 e customize
+
+Clear-Host
+Write-Host "========================================"
+Write-Host "        DEMONSTRACAO JWT API"
+Write-Host "========================================"
+Write-Host ""
+Write-Host "Este script demonstra como:"
+Write-Host "1. Registrar um usuario"
+Write-Host "2. Fazer login"
+Write-Host "3. Acessar rotas protegidas"
+Write-Host ""
+
+# CUSTOMIZE A URL BASE DA SUA API
+$baseUrl = "http://localhost:3000/api"
+
+Write-Host "Verificando se o servidor esta rodando..."
+try {
+    $healthCheck = Invoke-WebRequest -Uri "$baseUrl/health" -Method GET -UseBasicParsing -ErrorAction Stop
+    Write-Host "✅ Servidor respondendo!"
+} catch {
+    Write-Host "❌ Servidor nao esta rodando. Execute 'npm start' primeiro."
+    Read-Host "Pressione ENTER para sair"
+    exit
+}
+
+Write-Host ""
+Write-Host "1. Registrando usuario de teste..."
+
+# CUSTOMIZE OS DADOS DO USUÁRIO DE TESTE
+$userData = @{
+    name = "Usuario Teste"
+    email = "teste@exemplo.com"
+    password = "123456"
+} | ConvertTo-Json
+
+try {
+    $headers = @{'Content-Type' = 'application/json'}
+    $registerResponse = Invoke-RestMethod -Uri "$baseUrl/auth/register" -Method POST -Body $userData -Headers $headers
+    Write-Host "✅ Usuario registrado: $($registerResponse.user.name)"
+} catch {
+    $statusCode = $_.Exception.Response.StatusCode.value__
+    if ($statusCode -eq 400) {
+        Write-Host "⚠️ Usuario ja existe, continuando..."
+    } else {
+        Write-Host "❌ Erro no registro: $($_.Exception.Message)"
+        Read-Host "Pressione ENTER para sair"
+        exit
+    }
+}
+
+Write-Host ""
+Write-Host "2. Fazendo login..."
+
+$loginData = @{
+    email = "teste@exemplo.com"
+    password = "123456"
+} | ConvertTo-Json
+
+try {
+    $loginResponse = Invoke-RestMethod -Uri "$baseUrl/auth/login" -Method POST -Body $loginData -Headers $headers
+    $token = $loginResponse.token
+    Write-Host "✅ Login realizado com sucesso!"
+    Write-Host "Token: $($token.Substring(0, 20))..."
+} catch {
+    Write-Host "❌ Erro no login: $($_.Exception.Message)"
+    Read-Host "Pressione ENTER para sair"
+    exit
+}
+
+Write-Host ""
+Write-Host "3. Acessando rota protegida..."
+
+$authHeaders = @{
+    'Content-Type' = 'application/json'
+    'Authorization' = "Bearer $token"
+}
+
+try {
+    $profileResponse = Invoke-RestMethod -Uri "$baseUrl/protected/profile" -Method GET -Headers $authHeaders
+    Write-Host "✅ Perfil acessado:"
+    Write-Host "   Nome: $($profileResponse.user.name)"
+    Write-Host "   Email: $($profileResponse.user.email)"
+    Write-Host "   Tipo: $($profileResponse.user.role)"
+} catch {
+    Write-Host "❌ Erro ao acessar perfil: $($_.Exception.Message)"
+}
+
+Write-Host ""
+Write-Host "✅ Demonstracao concluida!"
+Read-Host "Pressione ENTER para sair"

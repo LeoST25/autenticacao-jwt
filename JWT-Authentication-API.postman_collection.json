@@ -476,6 +476,129 @@
         "description": "**🔒 ROTA PROTEGIDA - ADMIN ONLY**\n\nLista todos os usuários ativos do sistema.\n\n**Permissões:**\n- Apenas usuários com role 'admin'\n- Token JWT válido obrigatório\n\n**Retorna:**\n- Array com todos os usuários ativos\n- Contagem total de usuários\n- Dados sem senhas por segurança"
       },
       "response": []
+    },
+    {
+      "name": "⭐ 11. Make Admin (First Setup)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"User promoted to admin\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data.user.role).to.eql('admin');",
+              "});",
+              "",
+              "// Log sucesso",
+              "if (pm.response.code === 200) {",
+              "    console.log('✅ Usuário promovido a admin com sucesso!');",
+              "    console.log('🔄 Faça login novamente para obter token de admin');",
+              "} else {",
+              "    console.log('ℹ️ Esta rota só funciona se não houver nenhum admin ainda');",
+              "}",
+              "",
+              "// Atualizar token automaticamente se necessário",
+              "if (pm.response.code === 200) {",
+              "    // Sugerir novo login",
+              "    console.log('💡 Execute a requisição de Login novamente para atualizar o token');",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/protected/make-admin",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "protected",
+            "make-admin"
+          ]
+        },
+        "description": "**🚀 ROTA ESPECIAL PARA SETUP INICIAL**\n\nPromove o usuário atual para admin (apenas se não houver nenhum admin no sistema).\n\n**Quando usar:**\n- Logo após registrar o primeiro usuário\n- Para setup inicial do sistema\n- Quando não há nenhum admin ainda\n\n**Como usar:**\n1. Registre um usuário\n2. Faça login\n3. Execute esta requisição\n4. Faça login novamente para obter token de admin\n\n**Nota:** Esta rota só funciona se não existir nenhum admin no sistema ainda."
+      },
+      "response": []
+    },
+    {
+      "name": "🔄 12. Change User Role (Admin)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Role changed successfully\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include('alterado');",
+              "});",
+              "",
+              "if (pm.response.code === 200) {",
+              "    console.log('✅ Role do usuário alterado com sucesso!');",
+              "} else if (pm.response.code === 403) {",
+              "    console.log('⚠️ Acesso negado: Apenas admins podem alterar roles');",
+              "} else if (pm.response.code === 404) {",
+              "    console.log('❌ Usuário não encontrado - verifique o ID');",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"admin\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/protected/users/USER_ID_AQUI/role",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "protected",
+            "users",
+            "USER_ID_AQUI",
+            "role"
+          ]
+        },
+        "description": "**🔒 ROTA PROTEGIDA - ADMIN ONLY**\n\nAltera o role de um usuário específico.\n\n**Permissões:**\n- Apenas usuários com role 'admin'\n- Token JWT válido obrigatório\n- Não pode alterar próprio role\n\n**Como usar:**\n1. Execute 'List Users' para ver os IDs\n2. Substitua 'USER_ID_AQUI' pelo ID do usuário\n3. Altere o role no body (\"user\" ou \"admin\")\n\n**Roles disponíveis:**\n- \"user\" (usuário comum)\n- \"admin\" (administrador)\n\n**Exemplo de ID:** 507f1f77bcf86cd799439011"
+      },
+      "response": []
     }
   ],
   "event": [

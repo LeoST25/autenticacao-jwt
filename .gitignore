@@ -118,3 +118,43 @@ data/
 *.db
 *.sqlite
 *.sqlite3
+
+# Project specific files
+# Backups e arquivos temporários
+*.backup
+.env.backup*
+.env.old*
+
+# Scripts de teste locais (específicos do desenvolvedor)
+demo-usuario.ps1
+teste-api.bat
+teste-completo.ps1
+
+# Arquivos de configuração específicos do Atlas (contêm credenciais)
+config-atlas-simples.ps1
+configurar-atlas.ps1
+
+# Scripts de teste de conexão (podem conter informações sensíveis)
+test-atlas-connection.js
+
+# Permitir templates de exemplo (safe para GitHub)
+!*.example
+
+# Logs específicos do projeto
+auth.log
+error.log
+access.log
+
+# Arquivos temporários do Windows
+*.tmp
+*.temp
+
+# Certificados e chaves (se houver)
+*.pem
+*.key
+*.crt
+*.p12
+
+# Arquivos de configuração do MongoDB local
+mongo-data/
+mongodb-data/
